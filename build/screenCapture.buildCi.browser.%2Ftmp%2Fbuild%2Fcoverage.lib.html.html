@@ -1,0 +1,1006 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-passport-facebook-token/node_modules/passport-facebook-token/lib/index.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-passport-facebook-token">npmtest-passport-facebook-token (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-passport-facebook-token/node_modules/passport-facebook-token/lib/index.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">32.46% <small>(37 / 114)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">12.73% <small>(14 / 110)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">31.58% <small>(6 / 19)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">21.95% <small>(18 / 82)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> » <a href="index.html">node-npmtest-passport-facebook-token/node_modules/passport-facebook-token/lib/</a> » index.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+&nbsp;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i &lt; props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; <span class="missing-if-branch" title="else path not taken">E</span>if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { <span class="missing-if-branch" title="else path not taken">E</span>if (protoProps) defineProperties(Constructor.prototype, protoProps); <span class="missing-if-branch" title="else path not taken">E</span>if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+&nbsp;
+var _url = require('url');
+&nbsp;
+var _url2 = _interopRequireDefault(_url);
+&nbsp;
+var _crypto = require('crypto');
+&nbsp;
+var _crypto2 = _interopRequireDefault(_crypto);
+&nbsp;
+var _passportOauth = require('passport-oauth');
+&nbsp;
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? <span class="branch-0 cbranch-no" title="branch not covered">obj </span>: { default: obj }; }
+&nbsp;
+<span class="fstat-no" title="function not covered">function _classCallCheck(instance, Constructor) {</span> <span class="cstat-no" title="statement not covered">if (!(instance instanceof Constructor)) { <span class="cstat-no" title="statement not covered">throw new TypeError("Cannot call a class as a function"); </span>} </span>}
+&nbsp;
+<span class="fstat-no" title="function not covered">function _possibleConstructorReturn(self, call) {</span> <span class="cstat-no" title="statement not covered">if (!self) { <span class="cstat-no" title="statement not covered">throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); </span>} <span class="cstat-no" title="statement not covered"></span>return call &amp;&amp; (typeof call === "object" || typeof call === "function") ? call : self; </span>}
+&nbsp;
+function _inherits(subClass, superClass) { <span class="missing-if-branch" title="if path not taken">I</span>if (typeof superClass !== "function" &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered">superClass !== null)</span> { <span class="cstat-no" title="statement not covered">throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); </span>} subClass.prototype = Object.create(superClass &amp;&amp; superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); <span class="missing-if-branch" title="else path not taken">E</span>if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : <span class="branch-1 cbranch-no" title="branch not covered">subClass.__proto__ = superClass;</span> }
+&nbsp;
+/**
+ * `FacebookTokenStrategy` constructor.
+ *
+ * The Facebook authentication strategy authenticates requests by delegating to
+ * Facebook using the OAuth 2.0 protocol.
+ *
+ * Applications must supply a `verify` callback which accepts an `accessToken`,
+ * `refreshToken` and service-specific `profile`, and then calls the `done`
+ * callback supplying a `user`, which should be set to `false` if the
+ * credentials are not valid.  If an exception occurred, `error` should be set.
+ *
+ * @param {Object} options
+ * @param {Function} verify
+ * @example
+ * passport.use(new FacebookTokenStrategy({
+ *   clientID: '123456789',
+ *   clientSecret: 'shhh-its-a-secret'
+ * }), (accessToken, refreshToken, profile, done) =&gt; {
+ *   User.findOrCreate({facebookId: profile.id}, done);
+ * });
+ */
+&nbsp;
+var FacebookTokenStrategy = function (_OAuth2Strategy) {
+  _inherits(FacebookTokenStrategy, _OAuth2Strategy);
+&nbsp;
+<span class="fstat-no" title="function not covered">  function FacebookTokenStrategy(_options, _verify) {</span>
+<span class="cstat-no" title="statement not covered">    _classCallCheck(this, FacebookTokenStrategy);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var options = _options || {};</span>
+<span class="cstat-no" title="statement not covered">    var verify = _verify;</span>
+<span class="cstat-no" title="statement not covered">    var _fbGraphVersion = options.fbGraphVersion || 'v2.6';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    options.authorizationURL = options.authorizationURL || 'https://www.facebook.com/' + _fbGraphVersion + '/dialog/oauth';</span>
+<span class="cstat-no" title="statement not covered">    options.tokenURL = options.tokenURL || 'https://graph.facebook.com/' + _fbGraphVersion + '/oauth/access_token';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FacebookTokenStrategy).call(this, options, verify));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    _this.name = 'facebook-token';</span>
+<span class="cstat-no" title="statement not covered">    _this._accessTokenField = options.accessTokenField || 'access_token';</span>
+<span class="cstat-no" title="statement not covered">    _this._refreshTokenField = options.refreshTokenField || 'refresh_token';</span>
+<span class="cstat-no" title="statement not covered">    _this._profileURL = options.profileURL || 'https://graph.facebook.com/' + _fbGraphVersion + '/me';</span>
+<span class="cstat-no" title="statement not covered">    _this._profileFields = options.profileFields || ['id', 'displayName', 'name', 'emails'];</span>
+<span class="cstat-no" title="statement not covered">    _this._profileImage = options.profileImage || {};</span>
+<span class="cstat-no" title="statement not covered">    _this._clientSecret = options.clientSecret;</span>
+<span class="cstat-no" title="statement not covered">    _this._enableProof = typeof options.enableProof === 'boolean' ? options.enableProof : true;</span>
+<span class="cstat-no" title="statement not covered">    _this._passReqToCallback = options.passReqToCallback;</span>
+<span class="cstat-no" title="statement not covered">    _this._oauth2.useAuthorizationHeaderforGET(false);</span>
+<span class="cstat-no" title="statement not covered">    _this._fbGraphVersion = _fbGraphVersion;</span>
+<span class="cstat-no" title="statement not covered">    return _this;</span>
+  }
+&nbsp;
+  /**
+   * Authenticate request by delegating to a service provider using OAuth 2.0.
+   * @param {Object} req
+   * @param {Object} options
+   */
+&nbsp;
+&nbsp;
+  _createClass(FacebookTokenStrategy, [{
+    key: 'authenticate',
+    value: <span class="fstat-no" title="function not covered">function authenticate(req, options) {</span>
+<span class="cstat-no" title="statement not covered">      var _this2 = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">      var accessToken = this.lookup(req, this._accessTokenField);</span>
+<span class="cstat-no" title="statement not covered">      var refreshToken = this.lookup(req, this._refreshTokenField);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">      if (!accessToken) <span class="cstat-no" title="statement not covered">return this.fail({ message: 'You should provide ' + this._accessTokenField });</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">      this._loadUserProfile(accessToken, <span class="fstat-no" title="function not covered">function (error, profile) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (error) <span class="cstat-no" title="statement not covered">return _this2.error(error);</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var verified = <span class="fstat-no" title="function not covered">function verified(error, user, info) {</span></span>
+<span class="cstat-no" title="statement not covered">          if (error) <span class="cstat-no" title="statement not covered">return _this2.error(error);</span></span>
+<span class="cstat-no" title="statement not covered">          if (!user) <span class="cstat-no" title="statement not covered">return _this2.fail(info);</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">          return _this2.success(user, info);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered">        if (_this2._passReqToCallback) {</span>
+<span class="cstat-no" title="statement not covered">          _this2._verify(req, accessToken, refreshToken, profile, verified);</span>
+        } else {
+<span class="cstat-no" title="statement not covered">          _this2._verify(accessToken, refreshToken, profile, verified);</span>
+        }
+      });
+    }
+&nbsp;
+    /**
+     * Retrieve user profile from Facebook.
+     *
+     * This function constructs a normalized profile, with the following properties:
+     *
+     *   - `provider`         always set to `facebook`
+     *   - `id`               the user's Facebook ID
+     *   - `username`         the user's Facebook username
+     *   - `displayName`      the user's full name
+     *   - `name.familyName`  the user's last name
+     *   - `name.givenName`   the user's first name
+     *   - `name.middleName`  the user's middle name
+     *   - `gender`           the user's gender: `male` or `female`
+     *   - `profileUrl`       the URL of the profile for the user on Facebook
+     *   - `emails`           the proxied or contact email address granted by the user
+     *
+     * @param {String} accessToken
+     * @param {Function} done
+     */
+&nbsp;
+  }, {
+    key: 'userProfile',
+    value: <span class="fstat-no" title="function not covered">function userProfile(accessToken, done) {</span>
+<span class="cstat-no" title="statement not covered">      var _this3 = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">      var profileURL = _url2.default.parse(this._profileURL);</span>
+&nbsp;
+      // For further details, refer to https://developers.facebook.com/docs/reference/api/securing-graph-api/
+<span class="cstat-no" title="statement not covered">      if (this._enableProof) {</span>
+<span class="cstat-no" title="statement not covered">        var proof = _crypto2.default.createHmac('sha256', this._clientSecret).update(accessToken).digest('hex');</span>
+<span class="cstat-no" title="statement not covered">        profileURL.search = (profileURL.search ? profileURL.search + '&amp;' : '') + 'appsecret_proof=' + encodeURIComponent(proof);</span>
+      }
+&nbsp;
+      // Parse profile fields
+<span class="cstat-no" title="statement not covered">      if (this._profileFields) {</span>
+<span class="cstat-no" title="statement not covered">        var fields = FacebookTokenStrategy.convertProfileFields(this._profileFields);</span>
+<span class="cstat-no" title="statement not covered">        profileURL.search = (profileURL.search ? profileURL.search + '&amp;' : '') + 'fields=' + fields;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered">      profileURL = _url2.default.format(profileURL);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">      this._oauth2.get(profileURL, accessToken, <span class="fstat-no" title="function not covered">function (error, body, res) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (error) <span class="cstat-no" title="statement not covered">return done(new _passportOauth.InternalOAuthError('Failed to fetch user profile', error));</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        try {</span>
+<span class="cstat-no" title="statement not covered">          var json = JSON.parse(body);</span>
+&nbsp;
+          // Get image URL based on profileImage options
+<span class="cstat-no" title="statement not covered">          var imageUrl = _url2.default.parse('https://graph.facebook.com/' + _this3._fbGraphVersion + '/' + json.id + '/picture');</span>
+<span class="cstat-no" title="statement not covered">          if (_this3._profileImage.width) <span class="cstat-no" title="statement not covered">imageUrl.search = 'width=' + _this3._profileImage.width;</span></span>
+<span class="cstat-no" title="statement not covered">          if (_this3._profileImage.height) <span class="cstat-no" title="statement not covered">imageUrl.search = (imageUrl.search ? imageUrl.search + '&amp;' : '') + 'height=' + _this3._profileImage.height;</span></span>
+<span class="cstat-no" title="statement not covered">          imageUrl.search = '' + (imageUrl.search ? imageUrl.search : 'type=large');</span>
+<span class="cstat-no" title="statement not covered">          imageUrl = _url2.default.format(imageUrl);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">          var profile = {</span>
+            provider: 'facebook',
+            id: json.id,
+            displayName: json.name || '',
+            name: {
+              familyName: json.last_name || '',
+              givenName: json.first_name || '',
+              middleName: json.middle_name || ''
+            },
+            gender: json.gender || '',
+            emails: [{
+              value: json.email || ''
+            }],
+            photos: [{
+              value: imageUrl
+            }],
+            _raw: body,
+            _json: json
+          };
+&nbsp;
+<span class="cstat-no" title="statement not covered">          done(null, profile);</span>
+        } catch (e) {
+<span class="cstat-no" title="statement not covered">          done(e);</span>
+        }
+      });
+    }
+&nbsp;
+    /**
+     * Parses an OAuth2 RFC6750 bearer authorization token, this method additionally is RFC 2616 compliant and respects
+     * case insensitive headers.
+     *
+     * @param {Object} req http request object
+     * @returns {String} value for field within body, query, or headers
+     */
+&nbsp;
+  }, {
+    key: 'parseOAuth2Token',
+    value: <span class="fstat-no" title="function not covered">function parseOAuth2Token(req) {</span>
+<span class="cstat-no" title="statement not covered">      var OAuth2AuthorizationField = 'Authorization';</span>
+<span class="cstat-no" title="statement not covered">      var headerValue = req.headers &amp;&amp; (req.headers[OAuth2AuthorizationField] || req.headers[OAuth2AuthorizationField.toLowerCase()]);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">      return headerValue &amp;&amp; <span class="fstat-no" title="function not covered">function () {</span></span>
+<span class="cstat-no" title="statement not covered">        var bearerRE = /Bearer\ (.*)/;</span>
+<span class="cstat-no" title="statement not covered">        var match = bearerRE.exec(headerValue);</span>
+<span class="cstat-no" title="statement not covered">        return match &amp;&amp; match[1];</span>
+      }();
+    }
+&nbsp;
+    /**
+     * Performs a lookup of the param field within the request, this method handles searhing the body, query, and header.
+     * Additionally this method is RFC 2616 compliant and allows for case insensitive headers. This method additionally will
+     * delegate outwards to the OAuth2Token parser to validate whether a OAuth2 bearer token has been provided.
+     *
+     * @param {Object} req http request object
+     * @param {String} field
+     * @returns {String} value for field within body, query, or headers
+     */
+&nbsp;
+  }, {
+    key: 'lookup',
+    value: <span class="fstat-no" title="function not covered">function lookup(req, field) {</span>
+<span class="cstat-no" title="statement not covered">      return req.body &amp;&amp; req.body[field] || req.query &amp;&amp; req.query[field] || req.headers &amp;&amp; (req.headers[field] || req.headers[field.toLowerCase()]) || this.parseOAuth2Token(req);</span>
+    }
+&nbsp;
+    /**
+     * Converts array of profile fields to string
+     * @param {Array} _profileFields Profile fields i.e. ['id', 'email']
+     * @returns {String}
+     */
+&nbsp;
+  }], [{
+    key: 'convertProfileFields',
+    value: <span class="fstat-no" title="function not covered">function convertProfileFields(_profileFields) {</span>
+<span class="cstat-no" title="statement not covered">      var profileFields = _profileFields || [];</span>
+<span class="cstat-no" title="statement not covered">      var map = {</span>
+        'id': 'id',
+        'displayName': 'name',
+        'name': ['last_name', 'first_name', 'middle_name'],
+        'gender': 'gender',
+        'profileUrl': 'link',
+        'emails': 'email',
+        'photos': 'picture'
+      };
+&nbsp;
+<span class="cstat-no" title="statement not covered">      return profileFields.reduce(<span class="fstat-no" title="function not covered">function (acc, field) {</span></span>
+<span class="cstat-no" title="statement not covered">        return acc.concat(map[field] || field);</span>
+      }, []).join(',');
+    }
+  }]);
+&nbsp;
+  return FacebookTokenStrategy;
+}(_passportOauth.OAuth2Strategy);
+&nbsp;
+exports.default = FacebookTokenStrategy;
+module.exports = exports['default'];
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 25 2017 22:31:19 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
